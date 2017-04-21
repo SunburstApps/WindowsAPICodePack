@@ -64,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #endregion
 
-        internal void NativeShow()
+        internal void NativeShow(IntPtr ownerHandle)
         {
             // Applies config struct and other settings, then
             // calls main Win32 function.
@@ -72,6 +72,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 throw new InvalidOperationException(LocalizedMessages.NativeTaskDialogConfigurationError);
             }
+
+            nativeDialogConfig.parentHandle = ownerHandle;
 
             // Do a last-minute parse of the various dialog control lists,  
             // and only allocate the memory at the last minute.
