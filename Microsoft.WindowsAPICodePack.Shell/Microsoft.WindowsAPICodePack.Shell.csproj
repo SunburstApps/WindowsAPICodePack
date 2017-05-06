@@ -361,7 +361,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.WindowsAPICodePack\Microsoft.WindowsAPICodePack.csproj">
       <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
-      <Name>WindowsAPICodePack</Name>
+      <Name>Microsoft.WindowsAPICodePack</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
