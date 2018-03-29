@@ -257,7 +257,21 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private DialogControlCollection<TaskDialogControl> controls;
+		private TaskDialogDefaultButton defaultButton = TaskDialogDefaultButton.None;
+		/// <summary>
+		/// Gets or sets a value that contains the default button.
+		/// </summary>
+		public TaskDialogDefaultButton DefaultButton
+		{
+			get { return defaultButton; }
+			set
+			{
+				ThrowIfDialogShowing(LocalizedMessages.DefaultButtonCannotBeChanged);
+				defaultButton = value;
+			}
+		}
+
+		private DialogControlCollection<TaskDialogControl> controls;
         /// <summary>
         /// Gets a value that contains the TaskDialog controls.
         /// </summary>
@@ -416,21 +430,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <returns>The dialog result.</returns>
         public TaskDialogResult Show()
         {
-            return ShowCore(IntPtr.Zero);
-        }
-
-        /// <summary>
-        /// Creates and shows a task dialog.
-        /// </summary>
-        /// <param name="ownerHandle">
-        /// The <c>HWND</c> of the modal parent window of the task dialog.
-        /// </param>
-        /// <returns>
-        /// The dialog result.
-        /// </returns>
-        public TaskDialogResult Show(IntPtr ownerHandle)
-        {
-            return ShowCore(ownerHandle);
+            return ShowCore();
         }
         #endregion
 
@@ -466,7 +466,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             return staticDialog.Show();
         }
 
-        private TaskDialogResult ShowCore(IntPtr ownerHandle)
+        private TaskDialogResult ShowCore()
         {
             TaskDialogResult result;
 
@@ -493,7 +493,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // Show() call before the thread of execution 
                 // contines to the end of this method.
                 nativeDialog = new NativeTaskDialog(settings, this);
-                nativeDialog.NativeShow(ownerHandle);
+                nativeDialog.NativeShow();
 
                 // Build and return dialog result to public API - leaving it
                 // null after an exception is thrown is fine in this case
@@ -624,6 +624,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             dialogConfig.mainIcon = new TaskDialogNativeMethods.IconUnion((int)icon);
             dialogConfig.footerIcon = new TaskDialogNativeMethods.IconUnion((int)footerIcon);
             dialogConfig.commonButtons = (TaskDialogNativeMethods.TaskDialogCommonButtons)standardButtons;
+			dialogConfig.defaultButtonIndex = (int)defaultButton;
         }
 
         /// <summary>
@@ -1024,7 +1025,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                             break;
                         case "Minimum":
                         case "Maximum":
-                            nativeDialog.UpdateProgressBarRange();
+                            nativeDialog.UpdateProgressBarRange(progressBar.Minimum, progressBar.Maximum);
                             break;
                         default:
                             Debug.Assert(true, "Unknown property being set");

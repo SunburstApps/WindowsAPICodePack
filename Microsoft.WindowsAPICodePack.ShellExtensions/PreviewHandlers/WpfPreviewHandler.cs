@@ -11,11 +11,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     /// <summary>
     /// This is the base class for all WPF-based preview handlers and provides their basic functionality.
     /// To create a custom preview handler that contains a WPF user control,
-    /// a class must derive from this, use the <typeparamref name="PreviewHandlerAttribute"/>,
+    /// a class must derive from this, use the <see cref="PreviewHandlerAttribute"/>,
     /// and implement 1 or more of the following interfaces: 
-    /// <typeparamref name="IPreviewFromStream"/>, 
-    /// <typeparamref name="IPreviewFromShellObject"/>, 
-    /// <typeparamref name="IPreviewFromFile"/>.   
+    /// <see cref="IPreviewFromStream"/>, 
+    /// <see cref="IPreviewFromShellObject"/>, 
+    /// <see cref="IPreviewFromFile"/>.   
     /// </summary>
     public abstract class WpfPreviewHandler : PreviewHandler, IDisposable
     {
@@ -52,13 +52,15 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 0, 0, Math.Abs(_bounds.Left - _bounds.Right), Math.Abs(_bounds.Top - _bounds.Bottom), SetWindowPositionOptions.ShowWindow);
             }
         }
-                
+
+        /// <inheritdoc />
         protected override void SetParentHandle(IntPtr handle)
         {
             _parentHandle = handle;
             UpdatePlacement();
         }
 
+        /// <inheritdoc />
         protected override void Initialize()
         {
             if (_source == null)
@@ -78,6 +80,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             UpdatePlacement();
         }
 
+        /// <inheritdoc />
         protected override IntPtr Handle
         {
             get
@@ -92,12 +95,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             }
         }
 
+        /// <inheritdoc />
         protected override void UpdateBounds(NativeRect bounds)
         {
             _bounds = bounds;
             UpdatePlacement();
         }
 
+        /// <inheritdoc />
         protected override void HandleInitializeException(Exception caughtException)
         {
             if (caughtException == null) { return; }
@@ -111,11 +116,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             Control = new UserControl() { Content = text };
         }
 
+        /// <inheritdoc />
         protected override void SetFocus()
         {
             Control.Focus();
         }
 
+        /// <inheritdoc />
         protected override void SetBackground(int argb)
         {
             Control.Background = new SolidColorBrush(Color.FromArgb(
@@ -125,6 +132,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 (byte)(argb & 0xFF))); //b
         }
 
+        /// <inheritdoc />
         protected override void SetForeground(int argb)
         {
             Control.Foreground = new SolidColorBrush(Color.FromArgb(
@@ -134,6 +142,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                  (byte)(argb & 0xFF))); //b                 
         }
 
+        /// <inheritdoc />
         protected override void SetFont(Interop.LogFont font)
         {
             if (font == null) { throw new ArgumentNullException("font"); }

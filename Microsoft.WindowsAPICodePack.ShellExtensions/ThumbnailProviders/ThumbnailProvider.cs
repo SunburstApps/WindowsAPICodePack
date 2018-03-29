@@ -13,9 +13,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
     /// <summary>
     /// This is the base class for all thumbnail providers and provides their basic functionality.
-    /// To create a custom thumbnail provider a class must derive from this, use the <typeparamref name="ThumbnailProviderAttribute"/>,
+    /// To create a custom thumbnail provider a class must derive from this, use the <see cref="ThumbnailProviderAttribute"/>,
     /// and implement 1 or more of the following interfaces: 
-    /// <typeparamref name="IThumbnailFromStream"/>, <typeparamref name="IThumbnailFromShellObject"/>, <typeparamref name="IThumbnailFromFile"/>.   
+    /// <see cref="IThumbnailFromStream"/>, <see cref="IThumbnailFromShellObject"/>, <see cref="IThumbnailFromFile"/>.   
     /// </summary>
     public abstract class ThumbnailProvider : IThumbnailProvider, ICustomQueryInterface, IDisposable,
         IInitializeWithStream, IInitializeWithItem, IInitializeWithFile

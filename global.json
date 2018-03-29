@@ -1,0 +1,9 @@
+{
+  "sdk": {
+    "version": "2.1.100"
+  },
+
+  "msbuild-sdks": {
+    "Sunburst.NET.Sdk.WindowsForms": "1.0.47"
+  }
+}

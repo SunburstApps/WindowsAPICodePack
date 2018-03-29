@@ -5,20 +5,20 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using MS.WindowsAPICodePack.Internal;
+using Message = Microsoft.WindowsAPICodePack.Shell.Interop.Message;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
     /// <summary>
     /// This is the base class for all preview handlers and provides their basic functionality.
-    /// To create a custom preview handler a class must derive from this, use the <typeparamref name="PreviewHandlerAttribute"/>,
-    /// and implement 1 or more of the following interfaces: 
-    /// <typeparamref name="IPreviewFromStream"/>, 
-    /// <typeparamref name="IPreviewFromShellObject"/>, 
-    /// <typeparamref name="IPreviewFromFile"/>.   
+    /// To create a custom preview handler a class must derive from this, use the <see cref="PreviewHandlerAttribute"/>,
+    /// and implement 1 or more of the following interfaces:
+    /// <see cref="IPreviewFromStream"/>,
+    /// <see cref="IPreviewFromShellObject"/>,
+    /// <see cref="IPreviewFromFile"/>.
     /// </summary>
     public abstract class PreviewHandler : ICustomQueryInterface, IPreviewHandler, IPreviewHandlerVisuals,
         IOleWindow, IObjectWithSite, IInitializeWithStream, IInitializeWithItem, IInitializeWithFile
@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public bool IsPreviewShowing { get { return _isPreviewShowing; } }
 
         /// <summary>
-        /// Called immediately before the preview is to be shown.        
+        /// Called immediately before the preview is to be shown.
         /// </summary>
         protected virtual void Initialize() { }
 
@@ -69,13 +69,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// Called when a request is received to set or change the background color according to the user's preferences.
         /// </summary>
         /// <param name="color">An int representing the ARGB color</param>
-        protected abstract void SetBackground(int argb);
+        protected abstract void SetBackground(int color);
 
         /// <summary>
         /// Called when a request is received to set or change the foreground color according to the user's preferences.
         /// </summary>
         /// <param name="color">An int representing the ARGB color</param>
-        protected abstract void SetForeground(int argb);
+        protected abstract void SetForeground(int color);
 
         /// <summary>
         /// Called to set the font of the preview control according to the user's preferences.

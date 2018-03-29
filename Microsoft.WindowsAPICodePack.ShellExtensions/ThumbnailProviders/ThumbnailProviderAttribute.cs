@@ -2,7 +2,7 @@
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
-    /// <summary>    
+    /// <summary>
     /// This class attribute is applied to a Thumbnail Provider to specify registration parameters
     /// and aesthetic attributes.
     /// </summary>
@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <summary>
         /// Opts-out of running within the surrogate process DllHost.exe.
         /// This will reduce robustness and security.
-        /// This value should be true if the provider does not implement <typeparamref name="IThumbnailFromStream"/>.
+        /// This value should be true if the provider does not implement <see cref="IThumbnailFromStream"/>.
         /// </summary>
         // Note: The msdn documentation and property name are contradicting.
         // http://msdn.microsoft.com/en-us/library/cc144118(VS.85).aspx
@@ -65,11 +65,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public string TypeOverlay { get; set; }
 
         /// <summary>
-        /// Specifies the <typeparamref name="ThumbnailAdornment"/> for the thumbnail.
+        /// Specifies the <see cref="ThumbnailAdornment"/> for the thumbnail.
         /// <remarks>
-        /// Only 32bpp bitmaps support adornments. 
+        /// Only 32bpp bitmaps support adornments.
         /// While 24bpp bitmaps will be displayed, their adornments will not.
-        /// If an adornment is specified by the file-type's associated application, 
+        /// If an adornment is specified by the file-type's associated application,
         /// the applications adornment will override the value specified in this registration.</remarks>
         /// </summary>
         public ThumbnailAdornment ThumbnailAdornment { get; set; }

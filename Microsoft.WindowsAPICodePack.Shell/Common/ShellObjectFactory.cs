@@ -34,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Get the System.ItemType property
             string itemType = ShellHelper.GetItemType(nativeShellItem2);
 
-            if (!string.IsNullOrEmpty(itemType)) { itemType = itemType.ToUpperInvariant(); }
+            if (!string.IsNullOrEmpty(itemType)) { itemType = itemType.ToLowerInvariant(); }
 
             // Get some IShellItem attributes
             ShellNativeMethods.ShellFileGetAttributesOptions sfgao;
@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Create the right type of ShellObject based on the above information 
 
             // 1. First check if this is a Shell Link
-            if (itemType == ".lnk")
+            if (StringComparer.OrdinalIgnoreCase.Equals(itemType, ".lnk"))
             {
                 return new ShellLink(nativeShellItem2);
             }
