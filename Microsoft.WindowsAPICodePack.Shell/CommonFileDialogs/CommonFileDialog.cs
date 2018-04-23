@@ -577,25 +577,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Displays the dialog.
         /// </summary>
-        /// <param name="window">Top-level WPF window that will own the modal dialog box.</param>
-        /// <returns>A <see cref="CommonFileDialogResult"/> object.</returns>
-        public CommonFileDialogResult ShowDialog(Window window)
-        {
-            if (window == null)
-            {
-                throw new ArgumentNullException("window");
-            }
-
-            // Set the parent / owner window
-            parentWindow = (new WindowInteropHelper(window)).Handle;
-
-            // Show the modal dialog
-            return ShowDialog();
-        }
-
-        /// <summary>
-        /// Displays the dialog.
-        /// </summary>
         /// <returns>A <see cref="CommonFileDialogResult"/> object.</returns>
         public CommonFileDialogResult ShowDialog()
         {
