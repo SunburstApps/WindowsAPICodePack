@@ -64,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #endregion
 
-        internal void NativeShow()
+        internal void NativeShow(IntPtr hWndParent)
         {
             // Applies config struct and other settings, then
             // calls main Win32 function.
@@ -77,6 +77,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // and only allocate the memory at the last minute.
 
             MarshalDialogControlStructs();
+            nativeDialogConfig.parentHandle = hWndParent;
 
             // Make the call and show the dialog.
             // NOTE: this call is BLOCKING, though the thread 

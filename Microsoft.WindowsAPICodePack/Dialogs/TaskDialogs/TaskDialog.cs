@@ -430,7 +430,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <returns>The dialog result.</returns>
         public TaskDialogResult Show()
         {
-            return ShowCore();
+            return ShowCore(IntPtr.Zero);
+        }
+
+        public TaskDialogResult Show(IntPtr hWndParent)
+        {
+            return ShowCore(hWndParent);
         }
         #endregion
 
@@ -466,7 +471,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             return staticDialog.Show();
         }
 
-        private TaskDialogResult ShowCore()
+        private TaskDialogResult ShowCore(IntPtr hWndParent)
         {
             TaskDialogResult result;
 
@@ -493,7 +498,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // Show() call before the thread of execution 
                 // contines to the end of this method.
                 nativeDialog = new NativeTaskDialog(settings, this);
-                nativeDialog.NativeShow();
+                nativeDialog.NativeShow(hWndParent);
 
                 // Build and return dialog result to public API - leaving it
                 // null after an exception is thrown is fine in this case
