@@ -1,6 +1,7 @@
-<Project Sdk="Sunburst.NET.Sdk.WindowsForms">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <ExtrasEnableWinFormsProjectSetup>true</ExtrasEnableWinFormsProjectSetup>
     <AssemblyOriginatorKeyFile>ProjectSignKey.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
